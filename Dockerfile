@@ -27,5 +27,6 @@ RUN groupadd --gid 1001 nonroot \
   && chown -R nonroot:nonroot /home/nonroot \
   && chmod 0700 /home/nonroot/.ssh \
   && chown nonroot:nonroot /workspace
+VOLUME /workspace
 USER nonroot
 CMD ["bash", "--rcfile", "/.bashrc"]
