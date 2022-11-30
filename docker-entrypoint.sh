@@ -3,6 +3,8 @@ set -Eeo pipefail
 
 git config --global credential.helper store
 
+lpass login
+
 if [ -n "$ARM_CLIENT_ID" ] && [ -n "$ARM_CLIENT_SECRET" ]; then
   echo -e "\033[32m»»» Logging into Azure\033[0m"
   az login --service-principal -u "$ARM_CLIENT_ID" -p=$ARM_CLIENT_SECRET -t "${ARM_TENANT_ID}" >/dev/null

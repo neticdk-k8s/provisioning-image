@@ -4,7 +4,10 @@ ARG TARGETARCH
 ARG AZ_CLI_VERSION=2.40.0
 ARG TF_VERSION=1.2.8
 
-RUN apt update && apt install -y ca-certificates gnupg curl unzip pip
+ENV TZ=Europe \
+    DEBIAN_FRONTEND=noninteractive
+
+RUN apt update && apt install -y ca-certificates gnupg curl unzip pip lastpass-cli
 
 RUN curl https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_${TARGETARCH}.zip --output /tmp/terraform.zip \
   && unzip /tmp/terraform.zip \
