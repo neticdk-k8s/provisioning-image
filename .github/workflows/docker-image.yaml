@@ -1,12 +1,14 @@
 name: Create and publish container for provisioning
 
 on:
-  workflow_dispatch:
-    inputs:
-      image-tag:
-        description: 'Tag of the image to build'
-        required: true
-        type: string
+  push:
+    branches:
+      - "main"
+    tags:
+      - "v*.*.*"
+  pull_request:
+    branches:
+      - "main"
 
 env:
   REGISTRY: ghcr.io
@@ -35,7 +37,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract metadata (labels) for Docker
+      - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v4
         with:
@@ -47,5 +49,5 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ inputs.image-tag }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
