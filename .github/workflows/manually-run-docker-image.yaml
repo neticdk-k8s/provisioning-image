@@ -1,4 +1,4 @@
-name: Create and publish container for provisioning
+name: Manually create and publish container for provisioning
 
 on:
   workflow_dispatch:
