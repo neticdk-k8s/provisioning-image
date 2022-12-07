@@ -5,7 +5,7 @@ git config --global credential.helper store
 
 read -p 'Please, provide last-pass user (eg. foo@netic.dk): ' LPASS_USER
 
-lpass login LPASS_USER
+lpass login $LPASS_USER
 
 if [ -n "$ARM_CLIENT_ID" ] && [ -n "$ARM_CLIENT_SECRET" ]; then
   echo -e "\033[32m»»» Logging into Azure\033[0m"
