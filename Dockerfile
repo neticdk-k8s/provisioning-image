@@ -16,7 +16,8 @@ RUN curl https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_V
 
 RUN pip install azure-cli==${AZ_CLI_VERSION}
 
-COPY docker-entrypoint.sh /usr/local/bin/
+COPY docker-entrypoint.sh lpass /usr/local/bin/
+
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 RUN echo "eval \"\$(direnv hook bash)\"" >> /.bashrc
