@@ -1,10 +1,10 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 ARG TARGETARCH
-ARG AZ_CLI_VERSION=2.40.0
-ARG TF_VERSION=1.2.8
+ARG AZ_CLI_VERSION=2.54.0
+ARG TF_VERSION=1.5.7
 
-RUN apt update && apt install -y ca-certificates gnupg curl unzip pip
+RUN apt update && apt upgrade -y && apt install -y ca-certificates gnupg curl unzip pip
 
 RUN curl https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_${TARGETARCH}.zip --output /tmp/terraform.zip \
   && unzip /tmp/terraform.zip \
